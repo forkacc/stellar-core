@@ -254,9 +254,6 @@ TEST_CASE("crank returns correct value", "[timer]")
             executed = false;
             clock.postToNextCrank(execute);
             REQUIRE(!executed);
-            // 1 for posting "execute" to io_service
-            REQUIRE(clock.crank(false) == 1);
-            REQUIRE(!executed);
             // 1 for "execute"
             REQUIRE(clock.crank(false) == 1);
             REQUIRE(executed);

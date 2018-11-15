@@ -311,15 +311,7 @@ VirtualClock::crank(bool block)
             nWorkDone += advanceToNext();
         }
 
-        if (block && nWorkDone == 0)
-        {
-            assert(mDelayedExecutionQueue.empty());
-
-            // At this point we know that we will block in a moment, so we need
-            // to allow postToNextCrank() calls from background threads to wake
-            // up run_one() call.
-            mDelayExecution = false;
-        }
+        mDelayExecution = false;
     }
 
     // At this point main and background threads can add work to next crank.
